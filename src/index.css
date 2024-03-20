@@ -1,68 +1,159 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+body{
+  background: linear-gradient(0deg, #d436bc 0%, #361c5f 100%);
+  height: 100vh;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.logo{
+  display:block;
+  margin: 0 auto 20px;
+  width: 200px;
+  height: auto;
+  margin-bottom: 80px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-control {
+  display: flex;
+}
+
+.board-and-controls{
+  display: flex;
+}
+
+.score{
+  display: flex;
+  align-items: center;
+}
+
+.score h2{
+  color:#ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.score span{
+  margin-left: 20px;
+  font-size: 30px;
+  background: whitesmoke;
+  width: 70px;
+  height: 40px;
+  border-radius: 25px;
+  text-align: center;
+  color: rgba(21, 171, 184, 0.8);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  padding: 4px;
+  margin-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background: linear-gradient(250deg, #e3820a 0%, #56e5e5 100%);
+  color: #ffffff;
+  border-radius: 20px;
+  width: 100px;
+  height: 40px;
+  border: none;
+  box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.5);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.stopBtn{
+  margin-top: 48px;
+  margin-left: 425px;
+  position: fixed;
+}
+
+.board {
+  user-select: none;
+  margin: auto;
+  grid-area: game;
+  width: 240px;
+  border: 5px solid rgba(105, 41, 200, 0.8);
+  border-radius: 16px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.7);
+}
+
+.controls {
+  margin-left: 50px;
+  margin-top: -20px;
+}
+
+.row {
+  display: flex;
+}
+
+.upcoming {
+  position: fixed;
+  width: 300px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cell {
+  width: 24px;
+  aspect-ratio: 1;
+}
+
+.cell.hidden {
+  visibility: hidden;
+}
+
+.cell.Empty {
+  background: repeating-linear-gradient(rgba(28, 22, 67, 0.8), rgba(28, 22, 67, 0.8) 20px, rgba(28, 22, 67, 0.8) 20px, rgba(28, 22, 67, 0.8) 40px),
+  repeating-linear-gradient(90deg, rgba(28, 22, 67, 0.8), rgba(28, 22, 67, 0.8) 20px, rgba(28, 22, 67, 0.8) 20px, rgba(28, 22, 67, 0.8) 40px);
+}
+
+.cell.I {
+  background-color: #ffd800;
+  border: 1px solid rgb(69, 69, 69);
+  box-shadow: inset 3px 3px 0 rgba(255,255,255,0.4);
+}
+
+.cell.J {
+  background-color: #7925dd;
+  border: 1px solid rgb(69, 69, 69);
+  box-shadow: inset 3px 3px 0 rgba(255,255,255,0.4);
+}
+
+.cell.L {
+  background-color: orange;
+  border: 1px solid rgb(69, 69, 69);
+  box-shadow: inset 3px 3px 0 rgba(255,255,255,0.4);
+}
+
+.cell.O {
+  background-color: #00b5ff;
+  border: 1px solid rgb(69, 69, 69);
+  box-shadow: inset 3px 3px 0 rgba(255,255,255,0.4);
+}
+
+.cell.S {
+  background-color: rgb(48, 211, 56);
+  border: 1px solid rgb(69, 69, 69);
+  box-shadow: inset 3px 3px 0 rgba(255,255,255,0.4);
+}
+
+.cell.T {
+  background-color: #fb0584;
+  border: 1px solid rgb(69, 69, 69);
+  box-shadow: inset 3px 3px 0 rgba(255,255,255,0.4);
+}
+
+.cell.Z {
+  background-color: rgb(78, 227, 220);
+   border: 1px solid rgb(69, 69, 69);
+  box-shadow: inset 3px 3px 0 rgba(255,255,255,0.4);
 }

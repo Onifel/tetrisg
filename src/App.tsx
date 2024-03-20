@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import Board from './components/Board';
+import UpcomingBlocks from './components/UpcomingBlocks';
+import { useTetris } from './hooks/useTetris';
+import { Toaster } from 'react-hot-toast';
+import tetrisLogo from './assets/logoTetris.png'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { board, startGame, pauseGame, resumeGame, stopGame, paused, isPlaying, score, upcomingBlocks} = useTetris();
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <img src={tetrisLogo} className='logo'/>
+      <div className='app-control'>
+        <div className="board-and-controls">
+          <Board currentBoard={board} />
+          <div className="controls">
+            <div className='score'>
+              <h2>Score: </h2>
+              <span>{score}</span>
+            </div>
+          
+            {isPlaying ? (
+              <React.Fragment>
+                 {paused ? (
+                <button onClick={resumeGame}>Resume</button>
+              ) : (
+                <button onClick={pauseGame}>Pause</button>
+              )}
+              <div className='upcoming'>
+                <UpcomingBlocks upcomingBlocks={upcomingBlocks} />
+              </div>
+                
+              </React.Fragment>
+            
+            ) : (
+              <button onClick={startGame}>New Game</button>
+            )}
+          </div>
+        </div>
+        <div className='stopBtn'>
+          <button onClick={stopGame}>Stop</button>
+        </div>   
+        <Toaster 
+          position ='top-center'
+          toastOptions={{
+            duration: 5000,
+            style:{
+              marginTop:'300px',
+              width:'400px',
+              height:'250px',
+              background:'rgba(28, 22, 67, 0.9)',
+              color: '#56e5e5',
+              fontSize:'50px',
+              fontWeight: 'bold',
+              fontFamily:'Arial',
+              boxShadow: '0px 0px 25px 0px rgba(0,0,0,0.7), inset 0px 0px 5px 5px rgba(255,255,255,0.3)'
+            } 
+          }}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
