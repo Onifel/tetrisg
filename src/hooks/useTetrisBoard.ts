@@ -174,16 +174,5 @@ function boardReducer(state: BoardState, action: Action): BoardState {
       throw new Error(`Unhandled action type: ${unhandledType}`);
   }
 
-  // if (newState.board[0].some(cell => cell !== EmptyCell.Empty)) {
-  //   toast("Game Over");
-  //   return {
-  //     board: getEmptyBoard(),
-  //     droppingRow: 0,
-  //     droppingColumn: 0,
-  //     droppingBlock: Block.I,
-  //     droppingShape: SHAPES.I.shape,
-  //   };
-  // }
-
   return newState;
 }
